@@ -4,7 +4,7 @@ from src.utils import *
 
 
 def data_masking(data, request_type: str):
-    """Функция для маскировки даты"""
+    """Функция для маскировки счета"""
     parts = data.split()
     last_part = parts[-1]
     if request_type == 'from':
@@ -28,6 +28,7 @@ def format_result(data, formatted_date):
         result_data = (f"{formatted_date} {data['description']}\n"
                        f"{data_masked_from} -> {data_masked_to}\n"
                        f"{data['operationAmount']['amount']} {data['operationAmount']['currency']['name']}")
+
     else:
         result_data = (f"{formatted_date} {data['description']}\n"
                        f"{data_masked_to}\n"
@@ -50,3 +51,4 @@ def main():
 if __name__ == '__main__':
     for result in main():
         print(result + '\n')
+

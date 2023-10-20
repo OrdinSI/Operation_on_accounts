@@ -122,3 +122,54 @@ def mocked_result_data():
             "date": "2019-07-15T11:47:40.496961",
         }
     ]
+
+
+@pytest.fixture
+def mocked_data_result():
+    return [{
+        "id": 587085106,
+        "state": "EXECUTED",
+        "date": "2019-08-26T10:45:06.972075",
+        "operationAmount": {
+            "amount": "48223.05",
+            "currency": {
+                "name": "руб.",
+                "code": "RUB"
+            }
+        },
+        "description": "Открытие вклада",
+        "to": "Счет 35158586384610753655"
+    }] * 5
+
+@pytest.fixture
+def mocked_result_data_from():
+    return """
+    26.08.2019 Перевод организации\nVisa Classic 2842 87** **** 9012 -> Счет 6468 **** **** 9589\n31957.58 руб.
+    """
+
+@pytest.fixture
+def mocked_data_to():
+    return {
+        "id": 587085106,
+        "state": "EXECUTED",
+        "date": "2019-08-26T10:45:06.972075",
+        "operationAmount": {
+            "amount": "48223.05",
+            "currency": {
+                "name": "руб.",
+                "code": "RUB"
+            }
+        },
+        "description": "Открытие вклада",
+        "to": "Счет 35158586384610753655"
+    }
+
+
+@pytest.fixture
+def mocked_result_data_to():
+    return """
+    26.08.2019 Открытие вклада\nСчет 3515 **** **** 3655\n48223.05 руб.
+    """
+
+
+
