@@ -4,6 +4,7 @@ from src.utils import *
 
 
 def data_masking(data, request_type: str):
+    """Функция для маскировки даты"""
     parts = data.split()
     last_part = parts[-1]
     if request_type == 'from':
@@ -15,6 +16,7 @@ def data_masking(data, request_type: str):
 
 
 def main():
+    """ Программа для вывода 5 последних операций по счету"""
     datas = get_result_data()
     results = []
     for data in datas:
@@ -36,5 +38,5 @@ def main():
 
 if __name__ == '__main__':
     for result in main():
-        print(result)
+        print(result + '\n')
 
