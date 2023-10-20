@@ -8,15 +8,15 @@ def get_operations():
         return data
 
 
-def sort_key(e):
-    """ Ключ для сортировки файла по дате"""
-    return e["date"]
-
-
 def remove_empty_items():
     """ Удаление пустых элементов из списка"""
     data = get_operations()
     return [d for d in data if "date" in d]
+
+
+def sort_key(e):
+    """ Ключ для сортировки файла по дате"""
+    return e["date"]
 
 
 def sort_data():
@@ -25,6 +25,17 @@ def sort_data():
     data.sort(reverse=True, key=sort_key)
     return data
 
+
+def get_result_data():
+    """Получение первых number_last значений для отображения"""
+    number_last = 5
+    result_data = []
+    datas = sort_data()
+    for data in datas:
+        if data['state'] == "EXECUTED" and number_last > 0:
+            number_last -= 1
+            result_data.append(data)
+    return result_data
 
 
 
