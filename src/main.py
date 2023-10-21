@@ -22,19 +22,15 @@ def format_date(data):
 
 def format_result(data, formatted_date):
     """Форматирование результата"""
+    description = f"{formatted_date} {data['description']}"
     data_masked_to = data_masking(data['to'], "to")
     if data.get('from'):
         data_masked_from = data_masking(data['from'], "from")
-        result_data = (f"{formatted_date} {data['description']}\n"
-                       f"{data_masked_from} -> {data_masked_to}\n"
-                       f"{data['operationAmount']['amount']} {data['operationAmount']['currency']['name']}")
-
+        transaction_info = f"{data_masked_from} -> {data_masked_to}"
     else:
-        result_data = (f"{formatted_date} {data['description']}\n"
-                       f"{data_masked_to}\n"
-                       f"{data['operationAmount']['amount']} {data['operationAmount']['currency']['name']}")
-
-    return result_data
+        transaction_info = data_masked_to
+    amount = f"{data['operationAmount']['amount']} {data['operationAmount']['currency']['name']}"
+    return f"{description}\n{transaction_info}\n{amount}"
 
 
 def main(number_last):
