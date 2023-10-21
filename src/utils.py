@@ -8,9 +8,8 @@ def get_operations():
         return data
 
 
-def remove_empty_items():
+def remove_empty_items(data):
     """ Удаление пустых элементов из списка"""
-    data = get_operations()
     return [d for d in data if "date" in d]
 
 
@@ -19,24 +18,29 @@ def sort_key(e):
     return e["date"]
 
 
-def sort_data():
+def sort_datas(data):
     """ Сортировка данных по дате от большей к меньшей"""
-    data = remove_empty_items()
     data.sort(reverse=True, key=sort_key)
     return data
 
 
-def get_result_data():
-    """Получение первых number_last значений для отображения"""
-    number_last = 5
-    result_data = []
-    datas = sort_data()
-    for data in datas:
-        if data['state'] == "EXECUTED" and number_last > 0:
-            number_last -= 1
-            result_data.append(data)
+def filter_executed(data):
+    """Фильтрация данных по статусу EXECUTED"""
+    return [d for d in data if d['state'] == "EXECUTED"]
+
+
+def get_first_number_last(data, number_last):
+    """Возврат первых number_last значений для отображения"""
+    return data[:number_last]
+
+
+def get_result_data(number_last):
+    """Подготовка data для вывода"""
+    get_data = get_operations()
+    remove_data = remove_empty_items(get_data)
+    sort_data = sort_datas(remove_data)
+    executed_data = filter_executed(sort_data)
+    result_data = get_first_number_last(executed_data, number_last)
     return result_data
-
-
 
 

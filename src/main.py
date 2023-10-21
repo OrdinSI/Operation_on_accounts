@@ -37,9 +37,9 @@ def format_result(data, formatted_date):
     return result_data
 
 
-def main():
+def main(number_last):
     """ Программа для вывода 5 последних операций по счету"""
-    datas = get_result_data()
+    datas = get_result_data(number_last)
     results = []
     for data in datas:
         formatted_date = format_date(data)
@@ -49,6 +49,6 @@ def main():
 
 
 if __name__ == '__main__':
-    for result in main():
+    for result in main(5):
         print(result + '\n')
 
