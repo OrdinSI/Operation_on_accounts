@@ -218,5 +218,10 @@ def mocked_result_data_to():
 
 
 @pytest.fixture
+def mocked_data_masked_to():
+    return "Счет 3515 **** **** 3655"
+
+
+@pytest.fixture
 def mocked_data_masked_from():
     return "Visa Classic 2842 87** **** 9012"
