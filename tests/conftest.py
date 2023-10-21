@@ -215,3 +215,8 @@ def mocked_result_data_to():
     return """
     26.08.2019 Открытие вклада\nСчет 3515 **** **** 3655\n48223.05 руб.
     """
+
+
+@pytest.fixture
+def mocked_data_masked_from():
+    return "Visa Classic 2842 87** **** 9012"

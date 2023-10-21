@@ -23,5 +23,5 @@ def test_main(mocked_data_result, mocked_result_data_to):
     with patch("src.main.get_result_data", return_value=mocked_data_result):
         with patch("src.main.format_date", return_value="26.08.2019"):
             with patch("src.main.format_result", return_value=mocked_result_data_to):
-                results = main()
+                results = main(5)
                 assert results == [mocked_result_data_to] * 5
