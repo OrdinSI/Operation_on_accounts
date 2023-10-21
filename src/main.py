@@ -45,5 +45,5 @@ def main(number_last):
 
 if __name__ == '__main__':
     for result in main(5):
-        print(result + '\n')
+        print(result + '\n')  # pragma: no cover
 
