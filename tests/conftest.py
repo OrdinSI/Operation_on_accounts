@@ -181,6 +181,7 @@ def mocked_data_result():
             }
         },
         "description": "Открытие вклада",
+        "from": "Visa Classic 2842878893689012",
         "to": "Счет 35158586384610753655"
     }] * 5
 
@@ -193,7 +194,7 @@ def mocked_result_data_from():
 
 
 @pytest.fixture
-def mocked_data_to():
+def mocked_data_to_from():
     return {
         "id": 587085106,
         "state": "EXECUTED",
@@ -206,6 +207,7 @@ def mocked_data_to():
             }
         },
         "description": "Открытие вклада",
+        "from": "Visa Classic 2842878893689012",
         "to": "Счет 35158586384610753655"
     }
 
@@ -214,6 +216,13 @@ def mocked_data_to():
 def mocked_result_data_to():
     return """
     26.08.2019 Открытие вклада\nСчет 3515 **** **** 3655\n48223.05 руб.
+    """
+
+
+@pytest.fixture
+def mocked_result_data_from():
+    return """
+    26.08.2019 Открытие вклада\nVisa Classic 2842 87** **** 9012 -> Счет 3515 **** **** 3655\n48223.05 руб.
     """
 
 

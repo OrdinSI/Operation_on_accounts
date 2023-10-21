@@ -20,15 +20,10 @@ def format_date(data):
     return date_obj.strftime("%d.%m.%Y")
 
 
-def format_result(data, formatted_date):
+def format_result(data, formatted_date, data_masked_to, data_masked_from=None):
     """Форматирование результата"""
     description = f"{formatted_date} {data['description']}"
-    data_masked_to = data_masking(data['to'], "to")
-    if data.get('from'):
-        data_masked_from = data_masking(data['from'], "from")
-        transaction_info = f"{data_masked_from} -> {data_masked_to}"
-    else:
-        transaction_info = data_masked_to
+    transaction_info = data_masked_from and f"{data_masked_from} -> {data_masked_to}" or data_masked_to
     amount = f"{data['operationAmount']['amount']} {data['operationAmount']['currency']['name']}"
     return f"{description}\n{transaction_info}\n{amount}"
 
@@ -39,7 +34,11 @@ def main(number_last):
     results = []
     for data in datas:
         formatted_date = format_date(data)
-        result_data = format_result(data, formatted_date)
+        data_masked_to = data_masking(data['to'], "to")
+        data_masked_from = None
+        if "from" in data:
+            data_masked_from = data_masking(data['from'], "from")
+        result_data = format_result(data, formatted_date, data_masked_to, data_masked_from)
         results.append(result_data)
     return results
 
